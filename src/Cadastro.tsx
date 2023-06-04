@@ -28,7 +28,7 @@ export default function Cadastro() {
         <Titulo>{secoes[numSecao].titulo}</Titulo>
         <Box>
           <Text color='blue.800' fontWeight='bold' fontSize='md' mt={2} mb={2}>
-            Selecione o plano:
+            Selecione os planos:
           </Text>
             {
               secoes[numSecao]?.entradaTexto?.map(entrada => {
