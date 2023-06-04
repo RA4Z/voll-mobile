@@ -15,7 +15,7 @@ export default function Login({ navigation }) {
             <EntradaTexto label='E-mail' placeholder='Insira seu endereço de E-mail' />
             <EntradaTexto label='Senha' placeholder='Insira sua Senha' />
         </Box>
-      <Botao>Entrar</Botao>
+      <Botao onPress={() => navigation.navigate('Tabs')}>Entrar</Botao>
 
       <Link href='https://www.alura.com.br' mt={2}>
         Esqueceu sua senha?
