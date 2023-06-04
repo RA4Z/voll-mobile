@@ -1,4 +1,4 @@
-import { VStack, Image, Text, Box, Button, Link } from 'native-base';
+import { VStack, Image, Box, Checkbox } from 'native-base';
 import { useState } from 'react';
 import Logo from './assets/Logo.png'
 import { Titulo } from './components/Titulo';
@@ -34,6 +34,20 @@ export default function Cadastro() {
           placeholder: 'Digite seu CEP'
         }
       ]
+    },
+    {
+      id: 3,
+      titulo: 'Para finalizar, quais são os seus planos?',
+      checkbox: [
+        {
+          id: 1,
+          value: 'Sulameria'
+        },
+        {
+          id: 2,
+          value: 'Unimed'
+        }
+      ]
     }
   ]
 
@@ -55,8 +69,17 @@ export default function Cadastro() {
         <Titulo>{secoes[numSecao].titulo}</Titulo>
         <Box>
             {
-              secoes[numSecao].entradaTexto.map(entrada => {
+              secoes[numSecao]?.entradaTexto?.map(entrada => {
                 return <EntradaTexto label={entrada.label} placeholder={entrada.placeholder} key={entrada.id} />
+              })
+            }
+        </Box>
+        <Box>
+            {
+              secoes[numSecao]?.checkbox?.map(checkbox => {
+                return <Checkbox key={checkbox.id} value={checkbox.value}>
+                  {checkbox.value}
+                </Checkbox>
               })
             }
         </Box>
