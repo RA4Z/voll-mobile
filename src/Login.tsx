@@ -1,7 +1,8 @@
-import { VStack, Image, Text, Box, FormControl, Input, Button, Link } from 'native-base';
+import { VStack, Image, Text, Box, FormControl, Button, Link } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import Logo from './assets/Logo.png'
 import { Titulo } from './components/Titulo';
+import { EntradaTexto } from './components/EntradaTexto';
 
 export default function Login() {
   return (
@@ -10,29 +11,8 @@ export default function Login() {
 
         <Titulo>Faça Login em sua conta</Titulo>
         <Box>
-          <FormControl mt={3}>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input 
-              placeholder='Insira seu endereço de E-mail'
-              size='lg'
-              w='100%'
-              borderRadius='lg'
-              bgColor='gray.100'
-              shadow={3}
-            />
-          </FormControl>
-
-          <FormControl mt={3}>
-            <FormControl.Label>Senha</FormControl.Label>
-            <Input 
-              placeholder='Insira sua Senha'
-              size='lg'
-              w='100%'
-              borderRadius='lg'
-              bgColor='gray.100'
-              shadow={3}
-            />
-          </FormControl>
+            <EntradaTexto label='E-mail' placeholder='Insira seu endereço de E-mail' />
+            <EntradaTexto label='Senha' placeholder='Insira sua Senha' />
         </Box>
 
       <Button 
