@@ -1,8 +1,9 @@
-import { VStack, Image, Text, Box, FormControl, Button, Link } from 'native-base';
+import { VStack, Image, Text, Box, Button, Link } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import Logo from './assets/Logo.png'
 import { Titulo } from './components/Titulo';
 import { EntradaTexto } from './components/EntradaTexto';
+import { Botao } from './components/Botao'; 
 
 export default function Login() {
   return (
@@ -14,15 +15,7 @@ export default function Login() {
             <EntradaTexto label='E-mail' placeholder='Insira seu endereço de E-mail' />
             <EntradaTexto label='Senha' placeholder='Insira sua Senha' />
         </Box>
-
-      <Button 
-          w='100%'
-          bg='blue.800'
-          mt={10}
-          borderRadius='lg'
-          >
-        Entrar
-      </Button>
+      <Botao>Entrar</Botao>
 
       <Link href='https://www.alura.com.br' mt={2}>
         Esqueceu sua senha?
