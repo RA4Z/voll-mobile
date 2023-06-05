@@ -14,7 +14,7 @@ export function CardConsulta({
 nome, foto, especialidade, data, foiAtendido, foiAgendado
 }: CardProps) {
     return(
-        <VStack w='100%' bg={foiAtendido ? 'blue.100' : 'white'} p={5} borderRadius='lg' shadow={2}>
+        <VStack w='100%' bg={foiAtendido ? 'blue.100' : 'white'} p={5} borderRadius='lg' shadow={2} mb={5}>
             <VStack flexDir='row'>
                 <Avatar size='lg' source={{ uri: foto }} />
                 <VStack pl={4}>
@@ -24,7 +24,7 @@ nome, foto, especialidade, data, foiAtendido, foiAgendado
                 </VStack>
             </VStack>
             
-            <Botao mt={4}>{foiAgendado ? 'Cancelar consulta' : 'Agendar consulta'}</Botao>
+            <Botao mt={4}>{foiAgendado ? 'Cancelar' : 'Agendar consulta'}</Botao>
         </VStack>
     )
 }
