@@ -1,4 +1,4 @@
-import { Image, Box, Checkbox, ScrollView, Text } from 'native-base';
+import { Image, Box, Checkbox, ScrollView, Text, useToast } from 'native-base';
 import { useState } from 'react';
 import Logo from './assets/Logo.png'
 import { Titulo } from './components/Titulo';
@@ -7,10 +7,11 @@ import { Botao } from './components/Botao';
 import { secoes } from './utils/CadastroEntradaTexto';
 import { cadastrarPaciente } from './services/PacienteServico';
 
-export default function Cadastro() {
+export default function Cadastro({ navigation } : any) {
   const [numSecao, setNumSecao] = useState(0);
   const [dados, setDados] = useState({} as any)
   const [planos, setPlanos] = useState([] as number[])
+  const toast = useToast()
 
   function avancarSecao() {
     if(numSecao < secoes.length - 1){
@@ -50,7 +51,13 @@ export default function Cadastro() {
       imagem: dados.imagem
     })
     if(!resultado){
-      console.log('Erro ao fazer cadastro!')
+      toast.show({
+        title: 'Erro ao fazer o Cadastro', 
+        description: 'Verifique as informações inseridas!', 
+        backgroundColor: 'red.500'
+      })
+    } else {
+      navigation.replace('Login')
     }
   }
 
