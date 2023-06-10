@@ -13,7 +13,7 @@ interface Especialista {
     id: string
 }
 
-export default function Explorar() {
+export default function Explorar({navigation}: any) {
     const [estado, setEstado] = useState('');
     const [especialidade, setEspecialidade] = useState('')
     const [resultadoBusca, setResultadoBusca] = useState([])
@@ -52,7 +52,7 @@ export default function Explorar() {
                             nome={especialista.nome}
                             especialidade={especialista.especialidade} 
                             foto={especialista.imagem}
-                            // onPress={especialista.id}
+                            onPress={() => navigation.navigate('Agendamento', {especialistaId: especialista.id})}
                         />   
                     </VStack>
                 ))}
