@@ -91,7 +91,7 @@ const secoes = [
       checkbox: [
         {
           id: 1,
-          value: 'Sulameria'
+          value: 'Sulamerica'
         },
         {
           id: 2,
