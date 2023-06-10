@@ -4,17 +4,37 @@ import Logo from './assets/Logo.png'
 import { Titulo } from './components/Titulo';
 import { EntradaTexto } from './components/EntradaTexto';
 import { Botao } from './components/Botao';
-import { useState } from 'react'; 
+import { useEffect, useState } from 'react'; 
 import { fazerLogin } from './services/AutenticacaoServico';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import jwtDecode from 'jwt-decode';
 
 export default function Login({ navigation } : any) {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+  const [carregando, setCarregando] = useState(true)
   const toast = useToast()
+
+  useEffect(() => {
+    async function verificarLogin(){
+      const token = await AsyncStorage.getItem('token')
+      if(token) {
+        navigation.replace('Tabs')
+      }
+      setCarregando(false)
+    }
+    verificarLogin()
+  }, [])
 
   async function login() {
     const resultado = await fazerLogin(email,senha)
     if(resultado){
+      const { token } = resultado
+      AsyncStorage.setItem('token', token)
+
+      const tokenDecodificado = jwtDecode(token) as any
+      const pacienteId = tokenDecodificado.id
+      AsyncStorage.setItem('pacienteId', pacienteId)
       navigation.replace('Tab')
     } else{
       toast.show({
@@ -23,6 +43,10 @@ export default function Login({ navigation } : any) {
         backgroundColor: 'red.500'
       })
     }
+  }
+
+  if(carregando){
+    return null
   }
 
   return (
