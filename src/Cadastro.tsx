@@ -5,6 +5,7 @@ import { Titulo } from './components/Titulo';
 import { EntradaTexto } from './components/EntradaTexto';
 import { Botao } from './components/Botao'; 
 import { secoes } from './utils/CadastroEntradaTexto';
+import { cadastrarPaciente } from './services/PacienteServico';
 
 export default function Cadastro() {
   const [numSecao, setNumSecao] = useState(0);
@@ -17,6 +18,7 @@ export default function Cadastro() {
     } else {
       console.log(dados)
       console.log(planos)
+      cadastrar()
     }
   }
   function voltarSecao() {
@@ -27,6 +29,29 @@ export default function Cadastro() {
 
   function atualizarDados(id: string, valor: string) {
     setDados({...dados, [id]: valor})
+  }
+
+  async function cadastrar() {
+    const resultado = await cadastrarPaciente({
+      cpf: dados.cpf,
+      nome: dados.nome,
+      email: dados.email,
+      endereco: {
+        cep: dados.cep,
+        rua: dados.rua,
+        numero: dados.numero,
+        estado: dados.estado,
+        complemento: dados.complemento
+      },
+      senha: dados.senha,
+      telefone: dados.telefone,
+      possuiPlanoSaude: planos.length > 0,
+      planosSaude: planos,
+      imagem: dados.imagem
+    })
+    if(!resultado){
+      console.log('Erro ao fazer cadastro!')
+    }
   }
 
   return (
