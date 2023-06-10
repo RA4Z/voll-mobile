@@ -36,13 +36,13 @@ export default function Perfil({navigation}: any) {
                 <Avatar size='xl' source={{ uri: 'https://github.com/RA4Z.png' }} mt={5} />
                 
                 <Titulo color='blue.500'>Informações pessoais</Titulo>
-                <Titulo fontSize='lg' mb={1} >{dadosPaciente.nome}</Titulo>
-                <Text>{dadosPaciente.email}</Text>
-                <Text>{dadosPaciente.endereco.estado}</Text>
+                <Titulo fontSize='lg' mb={1} >{dadosPaciente?.nome}</Titulo>
+                <Text>{dadosPaciente?.email}</Text>
+                <Text>{dadosPaciente?.endereco?.estado}</Text>
                 <Divider mt={5} />
                 <Titulo color='blue.500' mb={1}>Planos de Saúde</Titulo>
                 {
-                    dadosPaciente.planosSaude.map((plano,index) => (
+                    dadosPaciente?.planosSaude.map((plano,index) => (
                         <Text key={index}>{plano}</Text>
                     ))
                 }
