@@ -4,8 +4,9 @@ import { Titulo } from '../components/Titulo';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { pegarDadosPaciente } from '../services/PacienteServico';
 import { Paciente } from '../interfaces/Paciente';
+import { Botao } from '../components/Botao';
 
-export default function Perfil() {
+export default function Perfil({navigation}: any) {
     const [dadosPaciente, setDadosPaciente] = useState({} as Paciente)
 
     useEffect(() => {
@@ -21,6 +22,12 @@ export default function Perfil() {
         }
         dadosPaciente()
     },[])
+
+    function deslogar() {
+        AsyncStorage.removeItem('token')
+        AsyncStorage.removeItem('pacienteId')
+        navigation.replace('Login')
+    }
 
     return (
         <ScrollView flex={1}>
@@ -39,6 +46,10 @@ export default function Perfil() {
                         <Text key={index}>{plano}</Text>
                     ))
                 }
+
+                <Botao onPress={deslogar}>
+                    Deslogar
+                </Botao>
             </VStack>
         </ScrollView>
     )
