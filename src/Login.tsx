@@ -10,13 +10,18 @@ import { fazerLogin } from './services/AutenticacaoServico';
 export default function Login({ navigation } : any) {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
+  const toast = useToast()
 
   async function login() {
     const resultado = await fazerLogin(email,senha)
     if(resultado){
       navigation.replace('Tab')
     } else{
-      console.log('Erro')
+      toast.show({
+        title: 'Erro no login', 
+        description: 'O E-mail ou Senha não conferem', 
+        backgroundColor: 'red.500'
+      })
     }
   }
 
