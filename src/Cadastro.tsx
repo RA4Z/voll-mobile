@@ -9,12 +9,14 @@ import { secoes } from './utils/CadastroEntradaTexto';
 export default function Cadastro() {
   const [numSecao, setNumSecao] = useState(0);
   const [dados, setDados] = useState({} as any)
+  const [planos, setPlanos] = useState([] as number[])
 
   function avancarSecao() {
     if(numSecao < secoes.length - 1){
       setNumSecao(numSecao + 1)
     } else {
       console.log(dados)
+      console.log(planos)
     }
   }
   function voltarSecao() {
@@ -33,9 +35,9 @@ export default function Cadastro() {
 
         <Titulo>{secoes[numSecao].titulo}</Titulo>
         <Box>
-          <Text color='blue.800' fontWeight='bold' fontSize='md' mt={2} mb={2}>
+          {numSecao == 2 && <Text color='blue.800' fontWeight='bold' fontSize='md' mt={2} mb={2}>
             Selecione os planos:
-          </Text>
+          </Text>}
             {
               secoes[numSecao]?.entradaTexto?.map(entrada => {
                 return (
@@ -54,10 +56,23 @@ export default function Cadastro() {
         <Box>
             {
               secoes[numSecao]?.checkbox?.map(checkbox => {
-                return <Checkbox key={checkbox.id} value={checkbox.value}>
+                return (
+                <Checkbox 
+                  key={checkbox.id} 
+                  value={checkbox.value}
+                  onChange={() => {
+                    setPlanos((planosAnteriores) => {
+                      if(planosAnteriores.includes(checkbox.id)){
+                        return planosAnteriores.filter((id) => id !== checkbox.id)
+                      }
+                      return [...planosAnteriores, checkbox.id]
+                    })
+                  }}
+                  isChecked={planos.includes(checkbox.id)}
+                >
                   {checkbox.value}
                 </Checkbox>
-              })
+              )})
             }
         </Box>
         {numSecao > 0 && <Botao onPress={() => voltarSecao()} bgColor='gray.400'>Voltar</Botao> }
