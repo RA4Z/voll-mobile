@@ -35,7 +35,7 @@ export default function Login({ navigation } : any) {
       const tokenDecodificado = jwtDecode(token) as any
       const pacienteId = tokenDecodificado.id
       AsyncStorage.setItem('pacienteId', pacienteId)
-      navigation.replace('Tab')
+      navigation.replace('Tabs')
     } else{
       toast.show({
         title: 'Erro no login', 
