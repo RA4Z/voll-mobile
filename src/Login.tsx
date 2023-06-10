@@ -66,7 +66,7 @@ export default function Login({ navigation } : any) {
 
       <Box w='100%' flexDirection='row' justifyContent='center' mt={8}>
         <Text>Ainda não tem cadastro? </Text>
-        <TouchableOpacity onPress={login} >
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')} >
           <Text color='blue.500'> 
             Faça seu cadastro!
           </Text>
